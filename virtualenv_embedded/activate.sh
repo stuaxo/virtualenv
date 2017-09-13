@@ -16,6 +16,12 @@ deactivate () {
         export PYTHONHOME
         unset _OLD_VIRTUAL_PYTHONHOME
     fi
+    
+    if ! [ -z ${_OLD_LD_LIBRARY_PATH+x} ] ; then
+        LD_LIBRARY_PATH="$_OLD_LD_LIBRARY_PATH"
+        export LD_LIBRARY_PATH
+        unset _OLD_LD_LIBRARY_PATH
+    fi
 
     # This should detect bash and zsh, which have a hash command that must
     # be called to get it to forget past commands.  Without forgetting
@@ -46,6 +52,10 @@ export VIRTUAL_ENV
 _OLD_VIRTUAL_PATH="$PATH"
 PATH="$VIRTUAL_ENV/__BIN_NAME__:$PATH"
 export PATH
+
+_OLD_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+LD_LIBRARY_PATH="$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH"
+export LD_LIBRARY_PATH
 
 # unset PYTHONHOME if set
 if ! [ -z "${PYTHONHOME+_}" ] ; then
